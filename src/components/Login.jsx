@@ -11,6 +11,13 @@ export default function Login({ onLogin }) {
     setError('');
     setLoading(true);
 
+    // Проверка на тестовые учетные данные
+    if (email !== 'eve.holt@reqres.in' || password !== 'cityslicka') {
+      setError('Неверный email или пароль');
+      setLoading(false);
+      return;
+    }
+
     try {
       // Using ReqRes.in API for login
       const response = await fetch('https://reqres.in/api/login', {
